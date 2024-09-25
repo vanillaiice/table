@@ -10,11 +10,11 @@ import (
 	"github.com/tealeg/xlsx/v3"
 )
 
-// Table represents a xlsx table.
+// Table represents a table in a xlsx file.
 type Table struct {
-	file      *xlsx.File        // file is the xlsx file that contains the table.
-	sheets    []*Sheet          // sheets is the list of sheets in the table.
-	sheetsMap map[string]*Sheet // sheetsMap is the map of sheets in the table.
+	file      *xlsx.File        // file is the xlsx file.
+	sheets    []*Sheet          // sheets is the list of sheets in the file.
+	sheetsMap map[string]*Sheet // sheetsMap is a map of sheets in the file.
 }
 
 // TableRenderOpts are the options for rendering a table.

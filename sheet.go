@@ -2,7 +2,7 @@ package table
 
 import "github.com/tealeg/xlsx/v3"
 
-// Sheet represents a sheet in a table.
+// Sheet represents a sheet in a xlsx file.
 type Sheet struct {
 	name string // name of the sheet.
 	rows []*Row // rows in the sheet.

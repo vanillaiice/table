@@ -22,6 +22,18 @@ func NewCellStyle() *CellStyle {
 	return (*CellStyle)(xlsx.NewStyle())
 }
 
+// NewCell returns a new cell.
+func NewCell(Content any, style ...*CellStyle) *Cell {
+	var s *CellStyle
+	if len(style) > 0 {
+		s = style[0]
+	} else {
+		s = NewCellStyle()
+	}
+
+	return &Cell{Content: Content, Style: s}
+}
+
 // NewCells createsand returns new cells.
 func NewCells(opt *NewCellOpts, content ...any) []*Cell {
 	var cells []*Cell

@@ -4,7 +4,7 @@ import (
 	"github.com/tealeg/xlsx/v3"
 )
 
-// Row represents a row in a table.
+// Row represents a row in a sheet.
 type Row struct {
 	cells  []*Cell // cells in the row.
 	height float64 // height of the row.
