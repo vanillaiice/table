@@ -12,7 +12,6 @@ var tbl *table.Table
 
 func TestMain(m *testing.M) {
 	tbl = table.NewTable()
-
 	os.Exit(m.Run())
 }
 

@@ -44,11 +44,9 @@ func (r *Row) IterCells(f func(int, *Cell) error) {
 // MergeRows merges multiple rows.
 func MergeRows(rows ...*Row) *Row {
 	row := NewRow()
-
 	for _, r := range rows {
 		row.AddCells(r.cells...)
 	}
-
 	return row
 }
 

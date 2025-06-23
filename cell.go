@@ -30,12 +30,15 @@ func NewCell(Content any, style ...*CellStyle) *Cell {
 	} else {
 		s = NewCellStyle()
 	}
-
 	return &Cell{Content: Content, Style: s}
 }
 
 // NewCells createsand returns new cells.
 func NewCells(opt *NewCellOpts, content ...any) []*Cell {
+	if opt.Style == nil {
+		opt.Style = NewCellStyle()
+	}
+
 	var cells []*Cell
 	for _, v := range content {
 		s := *opt.Style
@@ -54,8 +57,6 @@ func (c *Cell) render(cell *xlsx.Cell) {
 	}
 
 	cell.Merge(c.MergeH, c.MergeV)
-
 	cell.SetStyle((*xlsx.Style)(c.Style))
-
 	cell.SetValue(c.Content)
 }

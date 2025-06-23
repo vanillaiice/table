@@ -35,14 +35,12 @@ func (t *Table) Save(path string) error {
 // AddSheet adds a sheet to the table.
 func (t *Table) AddSheet(name string) (*Sheet, error) {
 	if _, ok := t.sheetsMap[name]; ok {
-
 		return nil, fmt.Errorf("sheet %s already exists", name)
 	}
 
 	sheet := &Sheet{name: name, rows: []*Row{}}
 	t.sheetsMap[name] = sheet
 	t.sheets = append(t.sheets, sheet)
-
 	return sheet, nil
 }
 
@@ -52,7 +50,6 @@ func (t *Table) GetSheetFromName(name string) (*Sheet, error) {
 	if !ok {
 		return nil, fmt.Errorf("sheet %s not found", name)
 	}
-
 	return sh, nil
 }
 
@@ -61,7 +58,6 @@ func (t *Table) GetSheetFromIndex(index int) (*Sheet, error) {
 	if index > len(t.sheets) || index < 0 {
 		return nil, fmt.Errorf("sheet #%d out of range", index)
 	}
-
 	return t.sheets[index], nil
 }
 
@@ -79,7 +75,6 @@ func (t *Table) Render(tableRenderOpts ...*TableRenderOpts) error {
 		if err != nil {
 			return err
 		}
-
 		if opt.SetAutoColWidth {
 			for i := 1; i <= sheet.MaxCol; i++ {
 				if err := sheet.SetColAutoWidth(i, func(s string) float64 {
@@ -89,11 +84,9 @@ func (t *Table) Render(tableRenderOpts ...*TableRenderOpts) error {
 				}
 			}
 		}
-
 		if _, err := t.file.AppendSheet(*sheet, sh.name); err != nil {
 			return err
 		}
 	}
-
 	return nil
 }

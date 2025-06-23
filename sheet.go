@@ -32,9 +32,7 @@ func (s *Sheet) render() (*xlsx.Sheet, error) {
 		if row.height != 0 {
 			r.SetHeight(row.height)
 		}
-
 		row.render(r)
 	}
-
 	return sheet, nil
 }

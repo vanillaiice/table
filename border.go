@@ -9,7 +9,6 @@ func AddOuterBorderRows(borderStyle string, rows ...*Row) {
 			} else if i == len(rows[0].cells)-1 {
 				c.Style.Border.Right = borderStyle
 			}
-
 			c.Style.Border.Top = borderStyle
 			c.Style.Border.Bottom = borderStyle
 		}
@@ -22,7 +21,6 @@ func AddOuterBorderRows(borderStyle string, rows ...*Row) {
 					} else if j == len(row.cells)-1 {
 						cell.Style.Border.Right = borderStyle
 					}
-
 					cell.Style.Border.Top = borderStyle
 				}
 			} else if i == len(rows)-1 {
@@ -32,7 +30,6 @@ func AddOuterBorderRows(borderStyle string, rows ...*Row) {
 					} else if j == len(row.cells)-1 {
 						cell.Style.Border.Right = borderStyle
 					}
-
 					cell.Style.Border.Bottom = borderStyle
 				}
 			} else {
@@ -55,7 +52,6 @@ func AddInnerBorderRows(borderStyle string, rows ...*Row) {
 			if i == 0 || i == len(rows[0].cells)-1 {
 				continue
 			}
-
 			c.Style.Border.Right = borderStyle
 			c.Style.Border.Left = borderStyle
 		}
@@ -67,14 +63,12 @@ func AddInnerBorderRows(borderStyle string, rows ...*Row) {
 						c.Style.Border.Left = borderStyle
 						c.Style.Border.Right = borderStyle
 					}
-
 					c.Style.Border.Top = borderStyle
 				} else {
 					if j != 0 && j != len(row.cells)-1 {
 						c.Style.Border.Left = borderStyle
 						c.Style.Border.Right = borderStyle
 					}
-
 					c.Style.Border.Bottom = borderStyle
 				}
 			}

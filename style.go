@@ -46,7 +46,6 @@ func (c *CellStyle) SetBorder(borderPosition BorderPosition, border string) *Cel
 	case BorderPositionLeft:
 		c.Border.Left = border
 	}
-
 	return c
 }
 
@@ -62,7 +61,6 @@ func (c *CellStyle) SetBorderColor(borderPosition BorderPosition, borderColor st
 	case BorderPositionLeft:
 		c.Border.LeftColor = borderColor
 	}
-
 	return c
 }
 
