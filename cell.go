@@ -87,11 +87,12 @@ func (c *Cell) render(cell *xlsx.Cell) {
 	if c.Opts.MergeV > 0 {
 		c.Opts.MergeV -= 1
 	}
-	if c.Opts.Format != "" {
-		cell.SetFormat(c.Opts.Format)
-	}
 
 	cell.Merge(c.Opts.MergeH, c.Opts.MergeV)
 	cell.SetStyle((*xlsx.Style)(c.Opts.Style))
 	cell.SetValue(c.Content)
+
+	if c.Opts.Format != "" {
+		cell.SetFormat(c.Opts.Format)
+	}
 }
