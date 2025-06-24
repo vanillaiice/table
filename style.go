@@ -5,6 +5,11 @@ import "github.com/tealeg/xlsx/v3"
 // CellStyle is the style of the cell.
 type CellStyle xlsx.Style
 
+// NewCellStyle returns the default cell style.
+func NewCellStyle() *CellStyle {
+	return (*CellStyle)(xlsx.NewStyle())
+}
+
 // BorderPosition is the position of the border.
 type BorderPosition int
 

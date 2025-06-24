@@ -11,7 +11,7 @@ func GenericTable(title string, headings []*Cell, rows []*Row, borderStyle strin
 		headingsRow := RowWithMergedCells(headings...)
 		for _, hr := range headingsRow {
 			for _, c := range hr.cells {
-				c.Style.SetBold(true).
+				c.Opts.Style.SetBold(true).
 					SetAlignementH("center").
 					SetAlignementV("center")
 			}
@@ -25,9 +25,7 @@ func GenericTable(title string, headings []*Cell, rows []*Row, borderStyle strin
 // RowTitle creates a title row.
 func RowTitle(title string, cols int, borderStyle string, cellStyle ...*CellStyle) *Row {
 	var style *CellStyle
-	if len(cellStyle) > 0 {
-		style = cellStyle[0]
-	} else {
+	if len(cellStyle) == 0 {
 		style = NewCellStyle()
 		style.
 			SetFontSize(style.Font.Size + 2).
@@ -35,9 +33,11 @@ func RowTitle(title string, cols int, borderStyle string, cellStyle ...*CellStyl
 			SetAlignementH("center").
 			SetAlignementV("center").
 			SetWrapText(true)
+	} else {
+		style = cellStyle[0]
 	}
 
-	row := RowWithMergedCellsH(&Cell{Content: title, MergeH: cols, Style: style})
+	row := RowWithMergedCellsH(&Cell{Content: title, Opts: &CellOpts{MergeH: cols, Style: style}})
 	AddOuterBorderRows(borderStyle, row)
 	return row
 }
@@ -53,8 +53,8 @@ func RowWithMergedCellsH(cells ...*Cell) *Row {
 	row := NewRow()
 	for _, c := range cells {
 		row.AddCells(c)
-		for i := 1; i < c.MergeH; i++ {
-			row.AddCells(&Cell{Style: NewCellStyle()})
+		for i := 1; i < c.Opts.MergeH; i++ {
+			row.AddCells(&Cell{Opts: NewCellOpts()})
 		}
 	}
 	return row
@@ -66,7 +66,7 @@ func RowWithMergedCellsV(cells ...*Cell) []*Row {
 	var nMaxRows int
 	for _, c := range cells {
 		var nRows int
-		for i := 1; i < c.MergeV; i++ {
+		for i := 1; i < c.Opts.MergeV; i++ {
 			if nMaxRows != 0 && nRows < nMaxRows {
 				nRows++
 			} else {
@@ -74,7 +74,7 @@ func RowWithMergedCellsV(cells ...*Cell) []*Row {
 				nMaxRows++
 				row := NewRow()
 				for range cells {
-					row.AddCells(&Cell{Style: NewCellStyle()})
+					row.AddCells(&Cell{Opts: NewCellOpts()})
 				}
 				rows = append(rows, row)
 			}
